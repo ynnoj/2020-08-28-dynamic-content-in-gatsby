@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "gatsby-starter-graphcms-blog",
+  "author": "Jonathan Steele <jonathan@steele.pro> (https://steele.pro)",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "dev": "gatsby develop"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "1.6.14",
+    "@mdx-js/react": "1.6.14",
+    "classnames": "2.2.6",
+    "gatsby": "2.24.47",
+    "gatsby-image": "2.4.16",
+    "gatsby-plugin-mdx": "1.2.34",
+    "gatsby-plugin-postcss": "2.3.11",
+    "gatsby-plugin-react-helmet": "3.3.10",
+    "gatsby-plugin-react-svg": "3.0.0",
+    "gatsby-plugin-sharp": "2.6.27",
+    "gatsby-source-graphcms": "2.0.0-next.5",
+    "gatsby-transformer-sharp": "2.5.13",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-helmet": "6.1.0",
+    "react-transition-group": "4.4.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.2.0",
+    "@tailwindcss/ui": "0.4.0",
+    "postcss-preset-env": "6.7.0",
+    "tailwindcss": "1.6.2"
+  }
+}
