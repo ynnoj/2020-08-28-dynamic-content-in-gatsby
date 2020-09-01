@@ -49,6 +49,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
               }
               date: formattedDate
               excerpt
+              remoteId
               seo {
                 description
                 image {

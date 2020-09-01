@@ -2,11 +2,32 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { useQuery, gql } from '@apollo/client'
+
+const COMMENTS_QUERY = gql`
+  query PostCommentsQuery($id: ID!) {
+    comments(where: { post: { id: $id } }) {
+      id
+      content {
+        text
+      }
+      email
+      name
+    }
+  }
+`
 
 function BlogPostTemplate({
   data: { authorImage, coverImage },
   pageContext: { nextPost, page, previousPost },
 }) {
+  const { data, error: commentsError, loading: commentsLoading } = useQuery(
+    COMMENTS_QUERY,
+    {
+      variables: { id: page.remoteId },
+    }
+  )
+
   return (
     <article>
       <header className="pt-6 lg:pb-10">
@@ -64,6 +85,23 @@ function BlogPostTemplate({
           )}
           <div className="prose max-w-none pt-10 pb-8">
             <MDXRenderer>{page.content.markdownNode.childMdx.body}</MDXRenderer>
+          </div>
+          <div>
+            <p>{commentsLoading ? 'Loading post comments' : null}</p>
+            <p>{commentsError ? 'Error loading post comments!' : null}</p>
+            {data?.comments.length ? (
+              <ul>
+                {data.comments.map((comment) => (
+                  <div>
+                    <p>{comment.email}</p>
+                    <p>{comment.name}</p>
+                    <p>{comment.content.text}</p>
+                  </div>
+                ))}
+              </ul>
+            ) : (
+              <p>No comments (yet).</p>
+            )}
           </div>
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 lg:col-start-1 lg:row-start-2">
